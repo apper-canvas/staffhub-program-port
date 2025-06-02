@@ -525,14 +525,14 @@ const MainFeature = () => {
                 </button>
               </div>
 
-              <div className="text-center mb-6">
+<div className="text-center mb-6">
                 <img
-                  src={selectedEmployee.avatar}
-                  alt={`${selectedEmployee.firstName} ${selectedEmployee.lastName}`}
+                  src={selectedEmployee.avatar || 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face'}
+                  alt={`${selectedEmployee.first_name || ''} ${selectedEmployee.last_name || ''}`}
                   className="w-24 h-24 rounded-2xl object-cover mx-auto mb-4"
                 />
                 <h3 className="text-lg font-semibold">
-                  {selectedEmployee.firstName} {selectedEmployee.lastName}
+                  {selectedEmployee.first_name} {selectedEmployee.last_name}
                 </h3>
                 <p className="text-surface-600">{selectedEmployee.position}</p>
               </div>
@@ -544,12 +544,14 @@ const MainFeature = () => {
                 </div>
                 <div>
                   <label className="text-sm font-medium text-surface-700">Department</label>
-                  <p className="text-surface-600">{selectedEmployee.department}</p>
+                  <p className="text-surface-600">
+                    {departments.find(d => d.Id === selectedEmployee.department)?.Name || selectedEmployee.department}
+                  </p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-surface-700">Hire Date</label>
                   <p className="text-surface-600">
-                    {selectedEmployee.hireDate ? format(new Date(selectedEmployee.hireDate), 'MMM d, yyyy') : 'N/A'}
+                    {selectedEmployee.hire_date ? format(new Date(selectedEmployee.hire_date), 'MMM d, yyyy') : 'N/A'}
                   </p>
                 </div>
                 <div>
